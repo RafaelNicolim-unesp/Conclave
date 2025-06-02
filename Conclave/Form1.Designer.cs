@@ -1,6 +1,6 @@
 ﻿namespace Conclave
 {
-    partial class Form1
+    partial class Conclave
     {
         /// <summary>
         /// Required designer variable.
@@ -53,6 +53,7 @@
             this.btVotar.TabIndex = 1;
             this.btVotar.Text = "&Votar";
             this.btVotar.UseVisualStyleBackColor = true;
+            this.btVotar.Click += new System.EventHandler(this.btVotar_Click);
             // 
             // btResultado
             // 
@@ -63,6 +64,7 @@
             this.btResultado.TabIndex = 2;
             this.btResultado.Text = "&Resultado";
             this.btResultado.UseVisualStyleBackColor = true;
+            this.btResultado.Click += new System.EventHandler(this.btResultado_Click);
             // 
             // Form1
             // 
