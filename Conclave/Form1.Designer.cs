@@ -66,7 +66,7 @@
             this.btResultado.UseVisualStyleBackColor = true;
             this.btResultado.Click += new System.EventHandler(this.btResultado_Click);
             // 
-            // Form1
+            // Conclave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -74,7 +74,7 @@
             this.Controls.Add(this.btResultado);
             this.Controls.Add(this.btVotar);
             this.Controls.Add(this.btGerenciar);
-            this.Name = "Form1";
+            this.Name = "Conclave";
             this.Text = "Form1";
             this.ResumeLayout(false);
 

@@ -109,10 +109,15 @@ namespace Conclave
                         dados[i] = dados[i + 1];
                     }
 
-                    dados[Funcoes.Length(dados) - 1] = null; 
+                    dados[Funcoes.Length(dados) - 1] = null;
                     Atualizar();
+                }
+                else
+                {
+                    MessageBox.Show("Cardeal não encontrado na lista de dados.");
                 }
             }
         }
+
     }
 }
