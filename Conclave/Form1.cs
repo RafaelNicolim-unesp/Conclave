@@ -29,7 +29,6 @@ namespace Conclave
         {
             FrmGerenciar f = new FrmGerenciar(this, dados);
             f.Show();
-            //this.Hide();
         }
 
         private void btResultado_Click(object sender, EventArgs e)
@@ -65,7 +64,6 @@ namespace Conclave
             if (eleito == null)
             {
                 MessageBox.Show("Não houve vitorioso.");
-                // Zerar votos
                 for (int i = 0; i < Funcoes.Length(dados); i++)
                 {
                     dados[i][1] = "0";

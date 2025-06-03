@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -88,36 +89,64 @@ namespace Conclave
 
         private void btRemover_Click(object sender, EventArgs e)
         {
-            if (dgvCardeais.SelectedRows.Count == 0)
+            if (dgvCardeais.SelectedCells.Count == 0)
             {
-                MessageBox.Show("Selecione um cardeal para remover");
+                MessageBox.Show("Não há linhas selecionadas!");
                 return;
             }
 
-            int rowIndex = dgvCardeais.SelectedRows[0].Index;
-            string nome = dgvCardeais.Rows[rowIndex].Cells[0].Value.ToString();
+            DataGridViewCell cell = dgvCardeais.SelectedCells[0];
+            int linha = cell.RowIndex;
+            string id = dgvCardeais.Rows[linha].Cells[0].Value?.ToString();
 
-            DialogResult confirm = MessageBox.Show($"Deseja remover o cardeal {nome}?", "Confirmar Remoção", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (confirm == DialogResult.Yes)
+            if (string.IsNullOrEmpty(id))
             {
-                int indice = Funcoes.Buscar(nome, dados);
-                if (indice != -1)
-                {
-                    for (int i = indice; i < Funcoes.Length(dados) - 1; i++)
-                    {
-                        dados[i] = dados[i + 1];
-                    }
+                MessageBox.Show("Valor inválido selecionado.");
+                return;
+            }
 
-                    dados[Funcoes.Length(dados) - 1] = null;
-                    Atualizar();
-                }
-                else
+            int indice = -1;
+            for (int i = 0; i < Length(dados); i++)
+            {
+                if (dados[i] != null && dados[i][0] == id)
                 {
-                    MessageBox.Show("Cardeal não encontrado na lista de dados.");
+                    indice = i;
+                    break;
+                }
+            }
+
+            if (indice == -1)
+            {
+                MessageBox.Show("Item não encontrado na lista de dados.");
+                return;
+            }
+
+            DialogResult r = MessageBox.Show($"Deseja mesmo remover o {dados[indice][0]}?",
+                                             "Confirmação",
+                                             MessageBoxButtons.YesNo,
+                                             MessageBoxIcon.Question);
+
+            if (r == DialogResult.Yes)
+            {
+                for (int i = indice; i < Length(dados) - 1; i++)
+                {
+                    dados[i] = dados[i + 1];
+                }
+
+                dados[Length(dados) - 1] = null;
+
+                Atualizar();
+            }
+            else
+            {
+                int linhaRemover = dgvCardeais.SelectedCells[0].RowIndex;
+                if (linhaRemover >= 0 && linhaRemover < dgvCardeais.Rows.Count)
+                {
+                    dgvCardeais.Rows.RemoveAt(linhaRemover);
                 }
             }
         }
-
     }
+
 }
+

@@ -52,6 +52,7 @@
             this.btVotar.TabIndex = 1;
             this.btVotar.Text = "&Votar";
             this.btVotar.UseVisualStyleBackColor = true;
+            this.btVotar.Click += new System.EventHandler(this.btVotar_Click);
             // 
             // lbxCardeais
             // 
